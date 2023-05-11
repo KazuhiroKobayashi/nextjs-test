@@ -1,0 +1,54 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+  "name": "nextjs-test",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": { "DEBIAN_VERSION": "bullseye" }
+  },
+  "runArgs": ["--name", "nextjs-test"],
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "files.autoSave": "afterDelay",
+        "editor.formatOnSave": true,
+        "editor.renderWhitespace": "all",
+        "editor.suggestSelection": "first",
+        "editor.tabSize": 2,
+        "workbench.startupEditor": "none",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "redhat.telemetry.enabled": false
+      },
+      "extensions": [
+        "bierner.markdown-preview-github-styles",
+        "christian-kohler.path-intellisense",
+        "esbenp.prettier-vscode",
+        "gruntfuggly.todo-tree",
+        "hilleer.yaml-plus-json",
+        "mhutchie.git-graph",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "tyriar.sort-lines",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-typescript-next",
+        "visualstudioexptteam.vscodeintellicode",
+        "syler.sass-indented",
+        "dsznajder.es7-react-js-snippets"
+      ]
+    }
+  },
+  "remoteUser": "vscode",
+  "mounts": [
+    "target=${containerWorkspaceFolder}/node_modules,type=volume",
+    "target=${containerWorkspaceFolder}/tmp,type=volume"
+  ],
+  "postCreateCommand": ".devcontainer/post-create.sh"
+}
